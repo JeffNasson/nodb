@@ -13,9 +13,9 @@ class App extends Component {
       showCharacters:false,
       showPlanets:false
     }
-    this.showCharacters=this.showCharacters.bind(this)
-    this.showShips=this.showShips.bind(this)
-    this.showPlanets=this.showPlanets.bind(this)
+    this.showCharacters=this.showCharacters.bind(this);
+    this.showShips=this.showShips.bind(this);
+    this.showPlanets=this.showPlanets.bind(this);
   }
 
   componentDidMount(){}

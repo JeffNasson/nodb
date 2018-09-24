@@ -50,7 +50,7 @@ export default class Characters extends Component{
         let newCharacters = this.state.characters.map((data,i)=>{
             return(
                 <div className='characters' key={i}>
-                    <h1>{data.name}</h1>
+                    <h1>Name: {data.name}</h1>
                     <button onClick={()=>this.deleteCharacter(i)}>I Will Break You</button>
                 </div>
             )

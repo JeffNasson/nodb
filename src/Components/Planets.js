@@ -7,11 +7,13 @@ export default class Planets extends Component{
         super();
         this.state={
             planets:[],
-            userInput:''
+            userInput:'',
+            favoritePlanets:[]
         }
         this.addPlanets=this.addPlanets.bind(this);
         this.handleInput=this.handleInput.bind(this);
         this.deletePlanets=this.deletePlanets.bind(this);
+        this.favoritePlanets=this.favoritePlanets.bind(this);
     }
     componentDidMount(){
         axios.get('/planets')
@@ -45,20 +47,28 @@ export default class Planets extends Component{
              })
     }
 
+    favoritePlanets(indexToAdd){
+        axios.put(`/planets/${indexToAdd}`)
+             .then(res=>{
+                 this.setState({favoritePlanets:res.data})
+             })
+    }
+
     handleInput(event){
         this.setState({userInput:event.target.value})
     }
 
 
     render(){
-        // console.log(this.state.planets)
+        console.log(this.state.favoritePlanets)
         let newPlanets=this.state.planets.map((data,i)=>{
             // console.log(data)
             return (
                 <div className='planets' key={i}>
-                    <h1>{data.name}</h1>
+                    <h1>Planet: {data.name}</h1>
                     {/* <h3>Population: {data.population}</h3> */}
                     <button onClick={()=>this.deletePlanets(i)}>Oh No The DeathStar!</button>
+                    {/* <button onClick={()=>this.favoritePlanets(i)}>Add to Favorites</button> */}
                 </div>
             )
         })
@@ -68,6 +78,7 @@ export default class Planets extends Component{
                 <input placeholder='Add A Planet' value={this.state.userInput} onChange={this.handleInput} />
                 <Child method={this.addPlanets} buttonName='Add a Planet' />
                 {newPlanets}
+                {/* {this.state.favoritePlanets.name} */}
             </div>
         )
     }

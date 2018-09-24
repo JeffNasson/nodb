@@ -50,7 +50,7 @@ export default class Ships extends Component{
         let newShips=this.state.ships.map((data,i)=>{
             return(
                 <div className='ships' key={i}>
-                    <h1>{data.name}</h1>
+                    <h1>Model: {data.name}</h1>
                     <button onClick={()=>this.deleteShips(i)}>I can't shake him!</button>
                 </div>
             )

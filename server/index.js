@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 let ships=[];
 let characters=[];
 let planets=[];
-
+let favoritePlanets=[];
 
 //planets
 axios.get('https://swapi.co/api/planets')
@@ -32,6 +32,16 @@ app.post('/planets',(req,res)=>{
 app.delete('/planets/:index', (req,res)=>{
    planets.splice(req.params.index,1);
    res.status(200).send(planets); 
+})
+
+app.put('/planets/:index',(req,res)=>{
+    favoritePlanets.push(planets[req.params.index]);
+    res.status(200).send(favoritePlanets);
+    // let {thingToReplaceOriginal}=req.body;
+    // let {index}=req.params;
+
+    // planets[index]=thingToReplaceOriginal;
+    // res.status(200).send(planets)
 })
 
 //starships
